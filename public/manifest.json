@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "TubeQuiet",
+  "version": "1.0",
+  "description": "Extensão do Chrome com React",
+  "action": {
+    "default_popup": "../src/popup/popup.html"
+  },
+  "permissions": ["activeTab", "scripting"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
