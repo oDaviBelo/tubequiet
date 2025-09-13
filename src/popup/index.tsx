@@ -1,12 +1,114 @@
 import { createRoot } from 'react-dom/client';
+import Cookies from 'js-cookie';
+
 import './index.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 export const App = () => {
   const [isFeedOn, setIsFeedOn] = useState(false);
   const [isShortsOn, setIsShortsOn] = useState(false);
   const [isCommentsOn, setIsCommentsOn] = useState(false);
   const [isSidebarOn, setIsSidebarOn] = useState(false);
   const [IsModeFocusOn, setIsModeFocusOn] = useState(false);
+
+  useEffect(() => {
+    const savedFeedState = Cookies.get('isFeedOn');
+    if (savedFeedState) {
+      setIsFeedOn(savedFeedState === 'true');
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        const tabId = tabs[0]?.id;
+        if (tabId !== undefined) {
+          chrome.tabs.sendMessage(tabId, {
+            type: 'TOGGLE_FEED',
+            value: savedFeedState,
+          });
+        }
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    Cookies.set('isFeedOn', isFeedOn.toString());
+  }, [isFeedOn]);
+
+  useEffect(() => {
+    const savedShortsState = Cookies.get('isShortsOn');
+    if (savedShortsState) {
+      setIsShortsOn(savedShortsState === 'true');
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        const tabId = tabs[0]?.id;
+        if (tabId !== undefined) {
+          chrome.tabs.sendMessage(tabId, {
+            type: 'TOGGLE_SHORTS',
+            value: savedShortsState,
+          });
+        }
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    Cookies.set('isShortsOn', isShortsOn.toString());
+  }, [isShortsOn]);
+
+  useEffect(() => {
+    const savedCommentsState = Cookies.get('isCommentsOn');
+    if (savedCommentsState) {
+      setIsCommentsOn(savedCommentsState === 'true');
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        const tabId = tabs[0]?.id;
+        if (tabId !== undefined) {
+          chrome.tabs.sendMessage(tabId, {
+            type: 'TOGGLE_COMMENTS',
+            value: savedCommentsState,
+          });
+        }
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    Cookies.set('isCommentsOn', isCommentsOn.toString());
+  }, [isCommentsOn]);
+
+  useEffect(() => {
+    const savedSidebarState = Cookies.get('isSidebarOn');
+    if (savedSidebarState) {
+      setIsSidebarOn(savedSidebarState === 'true');
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        const tabId = tabs[0]?.id;
+        if (tabId !== undefined) {
+          chrome.tabs.sendMessage(tabId, {
+            type: 'TOGGLE_SIDEBAR',
+            value: savedSidebarState,
+          });
+        }
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    Cookies.set('isSidebarOn', isSidebarOn.toString());
+  }, [isSidebarOn]);
+
+  useEffect(() => {
+    const savedModeFocusState = Cookies.get('IsModeFocusOn');
+    if (savedModeFocusState) {
+      setIsModeFocusOn(savedModeFocusState === 'true');
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        const tabId = tabs[0]?.id;
+        if (tabId !== undefined) {
+          chrome.tabs.sendMessage(tabId, {
+            type: 'TOGGLE_MODEFOCUS',
+            value: savedModeFocusState,
+          });
+        }
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    Cookies.set('IsModeFocusOn', IsModeFocusOn.toString());
+  }, [IsModeFocusOn]);
 
   const handleFeed = () => {
     const newValue = !isFeedOn;
