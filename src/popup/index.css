@@ -1,0 +1,31 @@
+#root {
+  background: linear-gradient(180deg, #b5dfff 0%, #d3edff 30.5%, #fff 100%);
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+#top-container {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+#logo-github {
+  height: 25px;
+}
+
+h1 {
+  font-size: 18px;
+}
+
+label {
+  font-size: 16px;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+}

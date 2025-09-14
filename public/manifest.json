@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "TubeQuiet",
+  "version": "1.0",
+  "description": "TubeQuiet is a lightweight and open-source Chrome extension designed to help you fight information overload on YouTube.",
+  "icons": {
+    "48": "./logo-png.png"
+  },
+
+  "action": {
+    "default_popup": "../src/popup/popup.html"
+  },
+  "permissions": ["activeTab", "scripting", "cookies", "tabs", "storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
