@@ -2,7 +2,11 @@
   "manifest_version": 3,
   "name": "TubeQuiet",
   "version": "1.0",
-  "description": "Extensão do Chrome com React",
+  "description": "TubeQuiet is a lightweight and open-source Chrome extension designed to help you fight information overload on YouTube.",
+  "icons": {
+    "48": "./logo-png.png"
+  },
+
   "action": {
     "default_popup": "../src/popup/popup.html"
   },
