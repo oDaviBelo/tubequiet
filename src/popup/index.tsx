@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import Cookies from 'js-cookie';
-
+import LogoGitHub from '../assets/github-logo.svg';
+import Logo from '../assets/logo-png.png';
 import './index.css';
 import { useEffect, useState } from 'react';
 export const App = () => {
@@ -184,7 +185,20 @@ export const App = () => {
   return (
     <>
       <div className="" id="popup">
-        <h1 className="">TubeQuiet: Eliminate distractions, use the essential</h1>
+        <div id="top-container">
+          <div>
+            <img
+              src={Logo}
+              alt=""
+              style={{
+                height: '80px',
+              }}
+            />
+          </div>
+          <div>
+            <h1 className="">Eliminate distractions, use the essential</h1>
+          </div>
+        </div>
         <div>
           <input type="checkbox" onChange={handleFeed} checked={isFeedOn} value="Feed" />
           <label htmlFor="Feed">Block Feed</label>
@@ -215,6 +229,32 @@ export const App = () => {
           />
           <label htmlFor="ModeFocus">Mode Focus</label>
         </div>
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <a
+          href="https://github.com/oDaviBelo/tubequiet"
+          target="_blank"
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <div>
+            <span>give us a star</span>{' '}
+          </div>
+          <figure>
+            <img src={LogoGitHub} alt="logo github" id="logo-github" />
+          </figure>
+        </a>
       </div>
     </>
   );
